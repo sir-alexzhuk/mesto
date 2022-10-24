@@ -3,11 +3,6 @@
    flex-direction: column;
     max-width: 282px;
     
-    background: #FFFFFF;
-    border-radius: 10px;
-    transition: opacity 0.3s;
+    
+    
 }
-
-.element:hover {
-    opacity: 0.6;
- }

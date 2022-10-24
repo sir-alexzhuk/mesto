@@ -1,0 +1,9 @@
+.popup__input_info_name {
+
+    margin-bottom: 30px;
+
+}
+
+.popup__input_info_name:last-of-type {
+    margin: 0;
+}

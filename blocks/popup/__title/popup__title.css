@@ -3,10 +3,8 @@ font-style: normal;
 font-weight: 900;
 font-size: 24px;
 line-height: 29px;
-width: 330px;
 color: #000000;
 margin-top: 34px;
-margin-left: 36px;
 margin-bottom: 54px;
 align-self: flex-start;
 
@@ -17,8 +15,7 @@ align-self: flex-start;
         font-size: 18px;
         line-height: 22px;
         margin-top: 25px;
-        margin-left: 22px;
         margin-bottom: 75px;
-        width: 238px;
+        
     }
 }     
