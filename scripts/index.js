@@ -67,8 +67,8 @@ const addNewCardButton = document.querySelector('.profile__addbutton');
 
 // Селектор элементов поп-апа для карточки
 const formAddElement = document.querySelector('.popup-element__container');
-const nameElementInput = formAddElement.querySelector('.popup-element__input_info_name');
-const linkElementInput = formAddElement.querySelector('.popup-element__input_info_link');
+const nameElementInput = formAddElement.querySelector('.popup__input_element_name');
+const linkElementInput = formAddElement.querySelector('.popup__input_element_link');
 const popupAddButtonSaveElement = formAddElement.querySelector('.popup-element__button-save');
 
 
@@ -169,8 +169,8 @@ function likeElement  (evt) {
 // Функиця добавление каточки
 function formAddSubmitHandler (evt) {
   evt.preventDefault(); 
-  const cardNameInput = document.querySelector('.popup-element__input_info_name').value;
-  const cardLinkInput = document.querySelector('.popup-element__input_info_link').value;
+  const cardNameInput = document.querySelector('.popup__input_element_name').value;
+  const cardLinkInput = document.querySelector('.popup__input_element_link').value;
   
   addCard({name: cardNameInput, link: cardLinkInput});
   
