@@ -18,10 +18,14 @@ const jobProfil = profileElement.querySelector('.profile__title')
 
 function openPopup (el) {
   el.classList.add('popup_is-opened');
+  document.addEventListener('keydown', keyHandler);
+  el.addEventListener('mousedown', clickByOverlay);
 }
 
 function closePopup (el) {
   el.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', keyHandler);
+  el.removeEventListener('mousedown', clickByOverlay);
 }
 
 
@@ -63,7 +67,10 @@ const addNewCardButton = document.querySelector('.profile__addbutton');
 
 // Селектор элементов поп-апа для карточки
 const formAddElement = document.querySelector('.popup-element__container');
+const nameElementInput = formAddElement.querySelector('.popup-element__input_info_name');
+const linkElementInput = formAddElement.querySelector('.popup-element__input_info_link');
 const popupAddButtonSaveElement = formAddElement.querySelector('.popup-element__button-save');
+
 
 
 // Открытие-закрытие поп-апа для карточки
@@ -193,11 +200,31 @@ function openImagePopup (evt) {
     openPopup(popupImageElement);
 
 }
-function closeImagePopup () {
+function closeImagePopup () { 
   closePopup(popupImageElement);
+  
 }
 
 
 popupImageButtonCloseElement.addEventListener('click', closeImagePopup);
 
  
+// Валидация
+enableValidation(selectors); 
+
+// Закрытие модальных окон кликом на оверлей и Esc
+
+function keyHandler(evt) {
+  if (evt.key === 'Escape') {
+    const popupIsOpened = document.querySelector('.popup_is-opened');
+    closePopup(popupIsOpened);
+  }
+} 
+
+function clickByOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    const popupIsOpened = document.querySelector('.popup_is-opened');
+    closePopup(popupIsOpened);
+  }
+} 
+
