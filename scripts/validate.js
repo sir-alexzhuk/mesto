@@ -2,7 +2,7 @@
 
 function chekImputValidity (inputElement) {
     const isValid = inputElement.validity.valid;
-    const formSection = inputElement.closest('.popup__form-section');
+    const formSection = inputElement.closest(selectors.popupFormSection); 
     const errorElement = formSection.querySelector(selectors.inputErrorClass);
     const inputErrorLine = formSection.querySelector(selectors.inputSelector);
 
@@ -70,6 +70,7 @@ function chekImputValidity (inputElement) {
   }
   
   const selectors = {
+    popupFormSection: '.popup__form-section',
     formSelector: '.popup__container',
     inputSelector: '.popup__input',
     imputErrorLine: 'popup__input_type_error',

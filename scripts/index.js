@@ -48,7 +48,7 @@ popupProfileButtonCloseElement.addEventListener('click', closeProfilePopup);
 
 
 // Функиця замены имени и информации профиля
-function formProfileSubmitHandler (evt) {
+function submitHandlerFormProfile (evt) {
     evt.preventDefault(); 
     nameProfil.textContent = nameInput.value;
     jobProfil.textContent = jobInput.value;
@@ -56,14 +56,14 @@ function formProfileSubmitHandler (evt) {
     }  
    
 
-formProfileElement.addEventListener('submit', formProfileSubmitHandler); 
+formProfileElement.addEventListener('submit', submitHandlerFormProfile); 
 
 // Попап добавления карточки
 // Селектор элементов поп-апа для карточки
 
 const popupAddElement = document.querySelector('.popup-element');
 const popupAddButtonCloseElement = popupAddElement.querySelector('.popup-element__button-close');
-const addNewCardButton = document.querySelector('.profile__addbutton');
+const buttonOpenPopupCard = document.querySelector('.profile__addbutton');
 
 // Селектор элементов поп-апа для карточки
 const formAddElement = document.querySelector('.popup-element__container');
@@ -72,17 +72,16 @@ const linkElementInput = formAddElement.querySelector('.popup__input_element_lin
 const popupAddButtonSaveElement = formAddElement.querySelector('.popup-element__button-save');
 
 
-
 // Открытие-закрытие поп-апа для карточки
 const openAddPopup = function() {
   openPopup(popupAddElement);
-
 }
+
 const closeAddPopup = function() {
   closePopup(popupAddElement);
 }
 
-addNewCardButton.addEventListener('click', openAddPopup);
+buttonOpenPopupCard.addEventListener('click', openAddPopup);
 popupAddButtonCloseElement.addEventListener('click', closeAddPopup);
 
 
@@ -123,10 +122,11 @@ const cardTemplate = elementTemplate.querySelector('.element');
 function createCard (element) {
 
   const el = cardTemplate.cloneNode(true);
+  const elementPhoto = el.querySelector('.element__photo');
 
   el.querySelector('.element__name').textContent = element.name;
-  el.querySelector('.element__photo').alt = element.name;
-  el.querySelector('.element__photo').src = element.link;
+  elementPhoto.alt = element.name;
+  elementPhoto.src = element.link;
   setEventCardListeners(el);
   return el;
 }
@@ -166,20 +166,26 @@ function likeElement  (evt) {
   elementCurrent.remove();
   }
 
+
+
 // Функиця добавление каточки
-function formAddSubmitHandler (evt) {
-  evt.preventDefault(); 
-  const cardNameInput = document.querySelector('.popup__input_element_name').value;
-  const cardLinkInput = document.querySelector('.popup__input_element_link').value;
+
+const cardNameInput = document.querySelector('.popup__input_element_name');
+const cardLinkInput = document.querySelector('.popup__input_element_link');
+
+function submitHandlerFormAdd(evt) {
+  evt.preventDefault();
   
-  addCard({name: cardNameInput, link: cardLinkInput});
+  addCard({name: cardNameInput.value, link: cardLinkInput.value});
   
   closeAddPopup();
+
+  evt.target.reset();
   
   }  
  
 
-  formAddElement.addEventListener('submit', formAddSubmitHandler); 
+  formAddElement.addEventListener('submit', submitHandlerFormAdd); 
 
 
 // Увеличение фото
