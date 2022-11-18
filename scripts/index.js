@@ -20,6 +20,7 @@ function openPopup (el) {
   el.classList.add('popup_is-opened');
   document.addEventListener('keydown', keyHandler);
   el.addEventListener('mousedown', clickByOverlay);
+  
 }
 
 function closePopup (el) {
@@ -33,6 +34,7 @@ function closePopup (el) {
 const openProfilePopup = function() {
     nameInput.value = nameProfil.textContent;
     jobInput.value = jobProfil.textContent;
+    disabledButton(popup);
     openPopup(popup);
 }
 
@@ -74,6 +76,7 @@ const popupAddButtonSaveElement = formAddElement.querySelector('.popup-element__
 
 // Открытие-закрытие поп-апа для карточки
 const openAddPopup = function() {
+  disabledButton(popupAddElement);
   openPopup(popupAddElement);
 }
 
@@ -199,10 +202,14 @@ const popupImageTitleElement = popupImageElement.querySelector('.popup-image__ti
 
 
 // Открытие-закрытие поп-апа для фото
+const popupImageZoom = document.querySelector('.popup-image__zoom');
+const popupImageTitle = document.querySelector('.popup-image__title');
+
+
 function openImagePopup (evt) {
-    document.querySelector('.popup-image__zoom').alt = evt.target.alt;
-    document.querySelector('.popup-image__zoom').src = evt.target.src;
-    document.querySelector('.popup-image__title').textContent = evt.target.alt;
+    popupImageZoom.alt = evt.target.alt;
+    popupImageZoom.src = evt.target.src;
+    popupImageTitle.textContent = evt.target.alt;
     openPopup(popupImageElement);
 
 }

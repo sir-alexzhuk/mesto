@@ -68,6 +68,12 @@ function chekImputValidity (inputElement) {
     setEventListeners(formElement, selectors);
   })
   }
+
+  function disabledButton (el) {
+    const submitButton = el.querySelector(selectors.submitButtonSelector);
+    submitButton.setAttribute("disabled", true);
+    submitButton.classList.add(selectors.inactiveButtonClass);
+  }
   
   const selectors = {
     popupFormSection: '.popup__form-section',
