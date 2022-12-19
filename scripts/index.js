@@ -1,9 +1,10 @@
 import Card from "./Card.js";
 import { configSelectors } from "./config.js";
+import { initialCards } from "./const.js";
 import FormValidator from "./FormValidator.js";
 
 // Селектор элементов поп-апа
-const popup = document.querySelector('.popup');
+
 const popupProfileElement = document.querySelector('.popup-profile');
 const popupProfileButtonCloseElement = popupProfileElement.querySelector('.popup__button-close');
 const popupProfileEditButtonElement = document.querySelector('.profile__editbutton');
@@ -37,11 +38,11 @@ function closePopup(el) {
 const openProfilePopup = function () {
 	nameInput.value = nameProfil.textContent;
 	jobInput.value = jobProfil.textContent;
-	openPopup(popup);
+	openPopup(popupProfileElement);
 }
 
 const closeProfilePopup = function () {
-	closePopup(popup);
+	closePopup(popupProfileElement);
 }
 
 popupProfileEditButtonElement.addEventListener('click', openProfilePopup);
@@ -73,53 +74,25 @@ const buttonOpenPopupCard = document.querySelector('.profile__addbutton');
 const formAddElement = document.querySelector('.popup-element__container');
 const nameElementInput = formAddElement.querySelector('.popup__input_element_name');
 const linkElementInput = formAddElement.querySelector('.popup__input_element_link');
-const popupAddButtonSaveElement = formAddElement.querySelector('.popup-element__button-save');
+const popupAddButtonSaveElement = formAddElement.querySelector('.popup__button-save');
 
 
-
-
-
-// Открытие-закрытие поп-апа для карточки
-const openAddPopup = function () {
+function openformAddElementPopup() {
+	popupAddButtonSaveElement.setAttribute("disabled", true);
+	popupAddButtonSaveElement.classList.add('popup__button-save_inactive');
 	openPopup(popupAddElement);
 }
 
-const closeAddPopup = function () {
-	closePopup(popupAddElement);
-}
+// Открытие-закрытие поп-апа для карточки
 
-buttonOpenPopupCard.addEventListener('click', openAddPopup);
-popupAddButtonCloseElement.addEventListener('click', closeAddPopup);
+
+buttonOpenPopupCard.addEventListener('click', openformAddElementPopup);
+popupAddButtonCloseElement.addEventListener('click', () => closePopup(popupAddElement));
 
 
 // Разметка и первичная подгрузка карточек 
 
-const initialCards = [
-	{
-		name: 'Архыз',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-	},
-	{
-		name: 'Челябинская область',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-	},
-	{
-		name: 'Иваново',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-	},
-	{
-		name: 'Камчатка',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-	},
-	{
-		name: 'Холмогорский район',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-	},
-	{
-		name: 'Байкал',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-	},
-];
+
 
 
 
@@ -129,7 +102,7 @@ const elements = document.querySelector('.elements');
 
 
 function addCard(dataCard) {
-	const card = new Card(dataCard, '.element-template');
+	const card = new Card(dataCard, '.element-template', openImagePopup);
 	const el = card.createCard();
 	elements.prepend(el)
 }
@@ -147,10 +120,11 @@ function submitHandlerFormAdd(evt) {
 
 	addCard({ name: cardNameInput.value, link: cardLinkInput.value });
 
-	closeAddPopup();
+	closePopup(popupAddElement);
 
 	evt.target.reset();
 
+	
 }
 
 
@@ -172,7 +146,7 @@ const popupImageZoom = document.querySelector('.popup-image__zoom');
 const popupImageTitle = document.querySelector('.popup-image__title');
 
 
-export function openImagePopup(evt) {
+function openImagePopup(evt) {
 	popupImageZoom.alt = evt.target.alt;
 	popupImageZoom.src = evt.target.src;
 	popupImageTitle.textContent = evt.target.alt;

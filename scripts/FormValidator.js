@@ -3,6 +3,8 @@ export default class FormValidator {
 	constructor(configSelectors, formNode) {
 		this.configSelectors = configSelectors;
 		this.formNode = formNode;
+		this._inputNodes = Array.from(this.formNode.querySelectorAll(this.configSelectors.inputSelector));
+		this._submitButtonNode = this.formNode.querySelector(this.configSelectors.submitButtonSelector);
 	}
 
 	enableValidation() {
@@ -13,9 +15,6 @@ export default class FormValidator {
 		this.formNode.addEventListener('submit', (event) => {
 			event.preventDefault();
 		});
-
-		this._inputNodes = Array.from(this.formNode.querySelectorAll(this.configSelectors.inputSelector));
-		this._submitButtonNode = this.formNode.querySelector(this.configSelectors.submitButtonSelector);
 
 		this._toggleButtonState(this._inputNodes, this._submitButtonNode);
 

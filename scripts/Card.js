@@ -1,10 +1,11 @@
-import { openImagePopup } from "./index.js";
+
 
 export default class Card {
 
-	constructor(data, selectorTemplate) {
+	constructor(data, selectorTemplate, openImagePopup) {
 		this.data = data;
 		this.selectorTemplate = selectorTemplate;
+		this.openImagePopup = openImagePopup;
 	}
 
 	createCard() {
@@ -28,7 +29,7 @@ export default class Card {
 	_setEventCardListeners() {
 		this._elementLike.addEventListener('click', this._likeElement);
 		this._elementDelete.addEventListener("click", this._deleteElement);
-		this._elementPhoto.addEventListener('click', openImagePopup);
+		this._elementPhoto.addEventListener('click', this.openImagePopup);
 	}
 
 	// Функия Лайк
