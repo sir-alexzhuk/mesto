@@ -2,6 +2,7 @@ import Card from "./Card.js";
 import { configSelectors } from "./config.js";
 import { initialCards } from "./const.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 
 // Селектор элементов поп-апа
 
@@ -94,23 +95,28 @@ popupAddButtonCloseElement.addEventListener('click', () => closePopup(popupAddEl
 
 
 
+const sectionInstance = new Section({ 
+	items: initialCards,
+	renderer: createCardNode
+}, '.elements');
+
+sectionInstance.render();
 
 
 
-const elements = document.querySelector('.elements');
 
-
-
-function addCard(dataCard) {
+function createCardNode(dataCard) {
 	const card = new Card(dataCard, '.element-template', openImagePopup);
-	const el = card.createCard();
-	elements.prepend(el)
+	const cardNode = card.createCard();
+
+	return cardNode;
 }
 
-initialCards.forEach(addCard);
+// const elements = document.querySelector('.elements');
+// initialCards.forEach(createCardNode);
 
 
-// Функиця добавление каточки
+// Функиця добавление карточки
 
 const cardNameInput = document.querySelector('.popup__input_element_name');
 const cardLinkInput = document.querySelector('.popup__input_element_link');

@@ -1,5 +1,3 @@
-
-
 export default class Card {
 
 	constructor(data, selectorTemplate, openImagePopup) {
@@ -33,12 +31,12 @@ export default class Card {
 	}
 
 	// Функия Лайк
-	_likeElement = (evt) => {
+	_likeElement = () => {
 		this._elementLike.classList.toggle('element__like_active');
 	}
 
 	// Функция Удаление карточки
-	_deleteElement = (event) => {
+	_deleteElement = () => {
 		this._el.remove();
 	}
 
